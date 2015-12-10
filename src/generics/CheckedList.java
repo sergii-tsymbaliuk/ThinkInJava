@@ -2,6 +2,7 @@
 package generics; /* Added by Eclipse.py */
 // Using Collection.checkedList().
 import typeinfo.pets.*;
+import typeinfo.pets.Cat;
 import java.util.*;
 
 public class CheckedList {
