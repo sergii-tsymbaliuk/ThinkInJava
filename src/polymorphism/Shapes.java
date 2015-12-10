@@ -14,6 +14,16 @@ public class Shapes {
     // Make polymorphic method calls:
     for(Shape shp : s)
       shp.draw();
+    
+    System.out.println("---------------------------------");
+    
+    int i = 0;
+    RandomShapeGenerator rsg = new RandomShapeGenerator(23) ;
+    for(Shape shp : rsg){
+    	System.out.println(i++);
+    	if (shp != null) 
+    		shp.draw();
+    }
   }
 } /* Output:
 Triangle.draw()
