@@ -1,5 +1,9 @@
 //: innerclasses/Sequence.java
 package innerclasses; /* Added by Eclipse.py */
+
+import java.util.ArrayList;
+import java.util.List;
+
 // Holds a sequence of Objects.
 
 interface Selector {
@@ -9,24 +13,31 @@ interface Selector {
 }	
 
 public class Sequence {
-  private Object[] items;
-  private int next = 0;
-  public Sequence(int size) { items = new Object[size]; }
+  //Changed to Array List according to the task 11.2
+  private List<Object> items;
+  //private Object[] items;
+  //private int next = 0;
+  public Sequence() { 
+	  items = new ArrayList<Object>();//new Object[size]; 
+  }
   public void add(Object x) {
-    if(next < items.length)
-      items[next++] = x;
+    //if( next < items.size()//length
+    		//)
+      items.add(x);
   }
   private class SequenceSelector implements Selector {
     private int i = 0;
-    public boolean end() { return i == items.length; }
-    public Object current() { return items[i]; }
-    public void next() { if(i < items.length) i++; }
+    public boolean end() { return i == items.size(); }
+    public Object current() { return items.get(i); }
+    public void next() { if(i < items.size()) i++; }
   }
+  
   public Selector selector() {
     return new SequenceSelector();
   }	
+  
   public static void main(String[] args) {
-    Sequence sequence = new Sequence(10);
+    Sequence sequence = new Sequence();
     for(int i = 0; i < 10; i++)
       sequence.add(Integer.toString(i));
     Selector selector = sequence.selector();
