@@ -5,6 +5,7 @@ public class Individual implements Comparable<Individual> {
   private static long counter = 0;
   private final long id = counter++;
   private String name;
+
   public Individual(String name) { this.name = name; }
   // 'name' is optional:
   public Individual() {}
