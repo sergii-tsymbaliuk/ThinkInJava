@@ -1,47 +1,30 @@
 //: typeinfo/RegisteredFactories.java
 package typeinfo; /* Added by Eclipse.py */
 // Registering Class Factories in the base class.
-//import typeinfo.factory.*;
+import typeinfo.factory.*;
 import java.util.*;
 
 class Part {
   public String toString() {
     return getClass().getSimpleName();
   }
-//  static List<Factory<? extends Part>> partFactories =
-//    new ArrayList<Factory<? extends Part>>();	
-  static List<Class<? extends Part>> partClasses = 
-    new ArrayList<Class<? extends Part>>();
-  static{
-	  partClasses.add(FuelFilter.class);
-       partClasses.add(FuelFilter.class);
-       partClasses.add(AirFilter.class);
-       partClasses.add(CabinAirFilter.class);
-       partClasses.add(OilFilter.class);
-       partClasses.add(FanBelt.class);
-       partClasses.add(PowerSteeringBelt.class);
-       partClasses.add(GeneratorBelt.class);	  
+  static List<Factory<? extends Part>> partFactories =
+    new ArrayList<Factory<? extends Part>>();	
+  static {
+    // Collections.addAll() gives an "unchecked generic
+    // array creation ... for varargs parameter" warning.
+    partFactories.add(new FuelFilter.Factory());
+    partFactories.add(new AirFilter.Factory());
+    partFactories.add(new CabinAirFilter.Factory());
+    partFactories.add(new OilFilter.Factory());
+    partFactories.add(new FanBelt.Factory());
+    partFactories.add(new PowerSteeringBelt.Factory());
+    partFactories.add(new GeneratorBelt.Factory());
   }
-//  static {
-//    // Collections.addAll() gives an "unchecked generic
-//    // array creation ... for varargs parameter" warning.
-//    partFactories.add(new FuelFilter.Factory());
-//    partFactories.add(new AirFilter.Factory());
-//    partFactories.add(new CabinAirFilter.Factory());
-//    partFactories.add(new OilFilter.Factory());
-//    partFactories.add(new FanBelt.Factory());
-//    partFactories.add(new PowerSteeringBelt.Factory());
-//    partFactories.add(new GeneratorBelt.Factory());
-//  }
-  
   private static Random rand = new Random(47);
   public static Part createRandom() {
-    int n = rand.nextInt(partClasses.size());
-    try {
-		return partClasses.get(n).newInstance();
-	} catch (Exception e) {
-		throw new RuntimeException(e);
-	} 
+    int n = rand.nextInt(partFactories.size());
+    return partFactories.get(n).create();
   }
 }	
 
@@ -105,7 +88,7 @@ class PowerSteeringBelt extends Belt {
   }
 }	
 
-public class RegisteredFactories {
+public class RegisteredFactories_orig {
   public static void main(String[] args) {
     for(int i = 0; i < 10; i++)
       System.out.println(Part.createRandom());
