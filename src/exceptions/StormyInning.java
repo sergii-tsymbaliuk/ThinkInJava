@@ -4,9 +4,24 @@ package exceptions; /* Added by Eclipse.py */
 // specified in their base-class versions, or exceptions
 // derived from the base-class exceptions.
 
-class BaseballException extends Exception {}
-class Foul extends BaseballException {}
-class Strike extends BaseballException {}
+class BaseballException extends RuntimeException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;}
+class Foul extends BaseballException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;}
+class Strike extends BaseballException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;}
 
 abstract class Inning {
   public Inning() throws BaseballException {}
@@ -17,9 +32,24 @@ abstract class Inning {
   public void walk() {} // Throws no checked exceptions
 }
 
-class StormException extends Exception {}
-class RainedOut extends StormException {}
-class PopFoul extends Foul {}
+class StormException extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;}
+class RainedOut extends StormException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;}
+class PopFoul extends Foul {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;}
 
 interface Storm {
   public void event() throws RainedOut;
@@ -34,10 +64,10 @@ public class StormyInning extends Inning implements Storm {
   public StormyInning(String s)
     throws Foul, BaseballException {}
   // Regular methods must conform to base class:
-//! void walk() throws PopFoul {} //Compile error
+//  void walk() throws PopFoul {} //Compile error
   // Interface CANNOT add exceptions to existing
   // methods from the base class:
-//! public void event() throws RainedOut {}
+//  public void event() throws RainedOut {}
   // If the method doesn't already exist in the
   // base class, the exception is OK:
   public void rainHard() throws RainedOut {}

@@ -29,13 +29,13 @@ public class Rethrowing {
     try {
       g();
     } catch(Exception e) {
-      System.out.println("main: printStackTrace()");
+      System.out.println("main: g: printStackTrace()");
       e.printStackTrace(System.out);
     }
     try {
       h();
     } catch(Exception e) {
-      System.out.println("main: printStackTrace()");
+      System.out.println("main: h: printStackTrace()");
       e.printStackTrace(System.out);
     }
   }
