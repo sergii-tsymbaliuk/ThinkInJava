@@ -55,13 +55,16 @@ public class FileProcessor {
 	}
 	
 	public static void main( String args[] ) {
-		if ( args.length != 1 ) {
-			System.out.println( "Usage: FileProcessor <pattern>" );
-			return;
-		}
-		System.out.println( "Do action \"Print\" for files: "+args[0] );
+//		if ( args.length != 1 ) {
+//			System.out.println( "Usage: FileProcessor <pattern>" );
+//			return;
+//		}
+		String path = ( args.length ) > 0 ? args[0] : System.getProperty("user.dir");
+		
+		System.out.println( "Do action \"Print\" for files: " + path);
 		FileProcessor.applyAction(
-				args[0], ".*\\.java", 
+				path, 
+				".*\\.java", 
 				new FileProcessor.Action() {
 					public void action( File file ) {
 						System.out.println( file.getAbsolutePath() );						
